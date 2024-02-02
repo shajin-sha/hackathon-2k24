@@ -16,3 +16,10 @@
   - Users can report their own attacks (one they faced) or even do upvote and fraud report.
 
   - We are taking friends circle number list ( From device's contact list) ( We are asking for permission to access the contacts)
+
+<img src="./Simulator Screenshot - iPhone 14 Pro Max - 2024-02-02 at 17.44.22.png"/>
+<img src="./Simulator Screenshot - iPhone 14 Pro Max - 2024-02-02 at 17.44.42.png"/>
+<img src="./Simulator Screenshot - iPhone 14 Pro Max - 2024-02-02 at 17.48.15.png"/>
+<img src="./Simulator Screenshot - iPhone 14 Pro Max - 2024-02-02 at 17.48.15.png.15.
+png"/>
+<img src="./Simulator Screenshot - iPhone 14 Pro Max - 2024-02-02 at 17.48.28.png"/>

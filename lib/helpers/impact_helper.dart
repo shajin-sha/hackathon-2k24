@@ -30,4 +30,8 @@ class ImpactHelper {
       return Colors.deepPurpleAccent.withOpacity(0.45);
     }
   }
+
+  static String getImpactInPercentage(double impact) {
+    return (impact * 100).toStringAsFixed(0);
+  }
 }

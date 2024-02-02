@@ -46,7 +46,9 @@ class RecentlyReportCard extends StatelessWidget {
                 lineWidth: 9,
                 // progressColor: ImpactHelper.getImpactColor(percent),
                 progressColor: UiColor.primaryColor,
-                center: const Text("50%"),
+                center: Text("${ImpactHelper.getImpactInPercentage(percent)}%",
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w600)),
                 percent: percent,
                 footer: const Padding(
                     padding: EdgeInsets.only(top: 8), child: Text("level")),

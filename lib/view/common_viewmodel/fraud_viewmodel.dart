@@ -106,12 +106,12 @@ class FraudViewModel extends ChangeNotifier {
   }
 
   void loadRecentlyReportedFrauds() async {
-    List<Contact> contacts = await FlutterContacts.getContacts();
+    // List<Contact> contacts = await FlutterContacts.getContacts();
     List<String> phoneNumber = [];
 
-    for (var element in contacts) {
-      phoneNumber.add(element.phones.first.number);
-    }
+    // for (var element in contacts) {
+    //   phoneNumber.add(element.phones.first.number);
+    // }
 
     //* Get the recently reported frauds
     API.get(CONST.recentFraudReport, {"mobileList": phoneNumber.toList()}).then(

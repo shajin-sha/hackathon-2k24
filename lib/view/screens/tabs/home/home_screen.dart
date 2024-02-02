@@ -71,6 +71,11 @@ class HomeScreen extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return ConnectionCircleCard(
+                    impact: context
+                        .watch<FraudViewModel>()
+                        .fraudReportList[index]
+                        .impact
+                        .toString(),
                     model:
                         context.watch<FraudViewModel>().fraudReportList[index],
                     title: context
