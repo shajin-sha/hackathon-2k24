@@ -5,44 +5,41 @@ const router = express.Router();
 //* Get
 router.get("/fraud/list/recent", (req, res) => {
     // Get all last 20 frauds
-    fraud_model.find({}, (err, frauds) => {
-        if (err) {
-            res.status(500).json({ message: "Internal server error." });
-        } else {
-            res.status(200).json({fraudsList: frauds});
-        }
-    }).limit(20);
-
+    global.db.collection("fraudreports").find().sort({ _id: -1 }).toArray().then((data) => res.json(data));
 });
 
 
 //*
-router.get("/fraud/list/connection", (req, res) => {
+router.post("/fraud/list/connection", (req, res) => {
     const {mobile} = req.body;
-    // Get all last 20 frauds
-    fraud_model.find({userMobile:mobile}, (err, frauds) => {
-        if (err) {
-            res.status(500).json({ message: "Internal server error." });
-        } else {
-            res.status(200).json({fraudsList: frauds});
-        }
-    }).limit(20);
+    // Get all frauds for a user
+    global.db.collection("fraudreports").find({userMobile: mobile}).toArray().then((data) => res.json(data));
 
 });
 
 
 //* Add/Update
 router.post("/fraud/add", (req, res) => {
-    const {fraudModel} = req.body;
-    create = new fraud_model(fraudModel);
-
-    create.save((err, fraud) => {
-        if (err) {
-            res.status(500).json({ message: "Internal server error." });
-        } else {
-            res.status(200).json({fraud: fraud});
-        }
-    });
+    console.log(req.body)
+    const { _id } = req.body;
+    if (_id) {
+        fraud_model.findById(_id)
+            .then((existingData) => {
+                if (existingData) {
+                    fraud_model.findByIdAndUpdate(_id, req.body, { new: true })
+                        .then((data) => res.json(data))
+                        .catch((error) => res.status(500).json({ error: error.message }));
+                } else {
+                    res.status(404).json({ error: "Document not found" });
+                }
+            })
+            .catch((error) => res.status(500).json({ error: error.message }));
+    } else {
+        const create = new fraud_model(req.body);
+        create.save()
+            .then((data) => res.json(data))
+            .catch((error) => res.status(500).json({ error: error.message }));
+    }
 });
 
 module.exports = router;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hackathon/const/const.dart';
 import 'package:hackathon/helpers/navigation_helpers.dart';
 import 'package:hackathon/theme/theme.dart';
+import 'package:hackathon/view/common_viewmodel/ask_ai_view.dart';
 import 'package:hackathon/view/common_viewmodel/bottom_navigation_viewmodel.dart';
 import 'package:hackathon/view/common_viewmodel/fraud_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,8 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => BottomNavigationViewModel()),
-        ChangeNotifierProvider(create: (_) => FraudViewModel())
+        ChangeNotifierProvider(create: (_) => FraudViewModel()),
+        ChangeNotifierProvider(create: (_) => AskAIViewModel())
       ],
       child: MaterialApp(
         title: CONST.appName,

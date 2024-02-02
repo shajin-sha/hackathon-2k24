@@ -12,14 +12,16 @@ part 'fraud_model.g.dart';
 class FraudModel with _$FraudModel {
   @JsonSerializable(explicitToJson: true)
   const factory FraudModel({
-    String? type,
+    @JsonKey(name: "_id") String? id,
+    @Default("SMS") String type,
     @Default(0.1) double impact,
     String? title,
     String? description,
-    @Default(0) int affected,
-    @Default(0) int inappropriateCount,
+    @JsonKey(name: "affectedCount") @Default(0) int affected,
+    @JsonKey(name: "inappropriateCount") @Default(0) int inappropriateCount,
     DateTime? firstReported,
     DateTime? lastUpdated,
+    String? userMobile,
   }) = _FraudModel;
 
   factory FraudModel.fromJson(Map<String, Object?> json) =>

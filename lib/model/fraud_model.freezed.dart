@@ -20,14 +20,19 @@ FraudModel _$FraudModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FraudModel {
-  String? get type => throw _privateConstructorUsedError;
+  @JsonKey(name: "_id")
+  String? get id => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   double get impact => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: "affectedCount")
   int get affected => throw _privateConstructorUsedError;
+  @JsonKey(name: "inappropriateCount")
   int get inappropriateCount => throw _privateConstructorUsedError;
   DateTime? get firstReported => throw _privateConstructorUsedError;
   DateTime? get lastUpdated => throw _privateConstructorUsedError;
+  String? get userMobile => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,14 +47,16 @@ abstract class $FraudModelCopyWith<$Res> {
       _$FraudModelCopyWithImpl<$Res, FraudModel>;
   @useResult
   $Res call(
-      {String? type,
+      {@JsonKey(name: "_id") String? id,
+      String type,
       double impact,
       String? title,
       String? description,
-      int affected,
-      int inappropriateCount,
+      @JsonKey(name: "affectedCount") int affected,
+      @JsonKey(name: "inappropriateCount") int inappropriateCount,
       DateTime? firstReported,
-      DateTime? lastUpdated});
+      DateTime? lastUpdated,
+      String? userMobile});
 }
 
 /// @nodoc
@@ -65,7 +72,8 @@ class _$FraudModelCopyWithImpl<$Res, $Val extends FraudModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
+    Object? id = freezed,
+    Object? type = null,
     Object? impact = null,
     Object? title = freezed,
     Object? description = freezed,
@@ -73,12 +81,17 @@ class _$FraudModelCopyWithImpl<$Res, $Val extends FraudModel>
     Object? inappropriateCount = null,
     Object? firstReported = freezed,
     Object? lastUpdated = freezed,
+    Object? userMobile = freezed,
   }) {
     return _then(_value.copyWith(
-      type: freezed == type
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       impact: null == impact
           ? _value.impact
           : impact // ignore: cast_nullable_to_non_nullable
@@ -107,6 +120,10 @@ class _$FraudModelCopyWithImpl<$Res, $Val extends FraudModel>
           ? _value.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      userMobile: freezed == userMobile
+          ? _value.userMobile
+          : userMobile // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -120,14 +137,16 @@ abstract class _$$FraudModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? type,
+      {@JsonKey(name: "_id") String? id,
+      String type,
       double impact,
       String? title,
       String? description,
-      int affected,
-      int inappropriateCount,
+      @JsonKey(name: "affectedCount") int affected,
+      @JsonKey(name: "inappropriateCount") int inappropriateCount,
       DateTime? firstReported,
-      DateTime? lastUpdated});
+      DateTime? lastUpdated,
+      String? userMobile});
 }
 
 /// @nodoc
@@ -141,7 +160,8 @@ class __$$FraudModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
+    Object? id = freezed,
+    Object? type = null,
     Object? impact = null,
     Object? title = freezed,
     Object? description = freezed,
@@ -149,12 +169,17 @@ class __$$FraudModelImplCopyWithImpl<$Res>
     Object? inappropriateCount = null,
     Object? firstReported = freezed,
     Object? lastUpdated = freezed,
+    Object? userMobile = freezed,
   }) {
     return _then(_$FraudModelImpl(
-      type: freezed == type
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       impact: null == impact
           ? _value.impact
           : impact // ignore: cast_nullable_to_non_nullable
@@ -183,6 +208,10 @@ class __$$FraudModelImplCopyWithImpl<$Res>
           ? _value.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      userMobile: freezed == userMobile
+          ? _value.userMobile
+          : userMobile // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -192,20 +221,26 @@ class __$$FraudModelImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$FraudModelImpl with DiagnosticableTreeMixin implements _FraudModel {
   const _$FraudModelImpl(
-      {this.type,
+      {@JsonKey(name: "_id") this.id,
+      this.type = "SMS",
       this.impact = 0.1,
       this.title,
       this.description,
-      this.affected = 0,
-      this.inappropriateCount = 0,
+      @JsonKey(name: "affectedCount") this.affected = 0,
+      @JsonKey(name: "inappropriateCount") this.inappropriateCount = 0,
       this.firstReported,
-      this.lastUpdated});
+      this.lastUpdated,
+      this.userMobile});
 
   factory _$FraudModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FraudModelImplFromJson(json);
 
   @override
-  final String? type;
+  @JsonKey(name: "_id")
+  final String? id;
+  @override
+  @JsonKey()
+  final String type;
   @override
   @JsonKey()
   final double impact;
@@ -214,19 +249,21 @@ class _$FraudModelImpl with DiagnosticableTreeMixin implements _FraudModel {
   @override
   final String? description;
   @override
-  @JsonKey()
+  @JsonKey(name: "affectedCount")
   final int affected;
   @override
-  @JsonKey()
+  @JsonKey(name: "inappropriateCount")
   final int inappropriateCount;
   @override
   final DateTime? firstReported;
   @override
   final DateTime? lastUpdated;
+  @override
+  final String? userMobile;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FraudModel(type: $type, impact: $impact, title: $title, description: $description, affected: $affected, inappropriateCount: $inappropriateCount, firstReported: $firstReported, lastUpdated: $lastUpdated)';
+    return 'FraudModel(id: $id, type: $type, impact: $impact, title: $title, description: $description, affected: $affected, inappropriateCount: $inappropriateCount, firstReported: $firstReported, lastUpdated: $lastUpdated, userMobile: $userMobile)';
   }
 
   @override
@@ -234,6 +271,7 @@ class _$FraudModelImpl with DiagnosticableTreeMixin implements _FraudModel {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'FraudModel'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('type', type))
       ..add(DiagnosticsProperty('impact', impact))
       ..add(DiagnosticsProperty('title', title))
@@ -241,7 +279,8 @@ class _$FraudModelImpl with DiagnosticableTreeMixin implements _FraudModel {
       ..add(DiagnosticsProperty('affected', affected))
       ..add(DiagnosticsProperty('inappropriateCount', inappropriateCount))
       ..add(DiagnosticsProperty('firstReported', firstReported))
-      ..add(DiagnosticsProperty('lastUpdated', lastUpdated));
+      ..add(DiagnosticsProperty('lastUpdated', lastUpdated))
+      ..add(DiagnosticsProperty('userMobile', userMobile));
   }
 
   @override
@@ -249,6 +288,7 @@ class _$FraudModelImpl with DiagnosticableTreeMixin implements _FraudModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FraudModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.impact, impact) || other.impact == impact) &&
             (identical(other.title, title) || other.title == title) &&
@@ -261,13 +301,25 @@ class _$FraudModelImpl with DiagnosticableTreeMixin implements _FraudModel {
             (identical(other.firstReported, firstReported) ||
                 other.firstReported == firstReported) &&
             (identical(other.lastUpdated, lastUpdated) ||
-                other.lastUpdated == lastUpdated));
+                other.lastUpdated == lastUpdated) &&
+            (identical(other.userMobile, userMobile) ||
+                other.userMobile == userMobile));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, type, impact, title, description,
-      affected, inappropriateCount, firstReported, lastUpdated);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      type,
+      impact,
+      title,
+      description,
+      affected,
+      inappropriateCount,
+      firstReported,
+      lastUpdated,
+      userMobile);
 
   @JsonKey(ignore: true)
   @override
@@ -285,20 +337,25 @@ class _$FraudModelImpl with DiagnosticableTreeMixin implements _FraudModel {
 
 abstract class _FraudModel implements FraudModel {
   const factory _FraudModel(
-      {final String? type,
+      {@JsonKey(name: "_id") final String? id,
+      final String type,
       final double impact,
       final String? title,
       final String? description,
-      final int affected,
-      final int inappropriateCount,
+      @JsonKey(name: "affectedCount") final int affected,
+      @JsonKey(name: "inappropriateCount") final int inappropriateCount,
       final DateTime? firstReported,
-      final DateTime? lastUpdated}) = _$FraudModelImpl;
+      final DateTime? lastUpdated,
+      final String? userMobile}) = _$FraudModelImpl;
 
   factory _FraudModel.fromJson(Map<String, dynamic> json) =
       _$FraudModelImpl.fromJson;
 
   @override
-  String? get type;
+  @JsonKey(name: "_id")
+  String? get id;
+  @override
+  String get type;
   @override
   double get impact;
   @override
@@ -306,13 +363,17 @@ abstract class _FraudModel implements FraudModel {
   @override
   String? get description;
   @override
+  @JsonKey(name: "affectedCount")
   int get affected;
   @override
+  @JsonKey(name: "inappropriateCount")
   int get inappropriateCount;
   @override
   DateTime? get firstReported;
   @override
   DateTime? get lastUpdated;
+  @override
+  String? get userMobile;
   @override
   @JsonKey(ignore: true)
   _$$FraudModelImplCopyWith<_$FraudModelImpl> get copyWith =>

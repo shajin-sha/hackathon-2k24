@@ -100,18 +100,30 @@ class ReportScreen extends StatelessWidget {
             ),
 
             Divider(color: UiColor.greyColor),
-            const Row(
+            Row(
               children: [
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(2),
-                    child: Button(title: "Report Fraud"),
+                    padding: const EdgeInsets.all(2),
+                    child: Button(
+                      title: "Report Fraud",
+                      onPressed: () {
+                        context
+                            .read<FraudViewModel>()
+                            .reportAsFraudFraudReport(context);
+                      },
+                    ),
                   ),
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(2),
+                    padding: const EdgeInsets.all(2),
                     child: Button(
+                      onPressed: () {
+                        context
+                            .read<FraudViewModel>()
+                            .reportAsInappropriateFraudReport(context);
+                      },
                       title: "Inappropriate",
                       buttonType: ButtonType.secondary,
                     ),

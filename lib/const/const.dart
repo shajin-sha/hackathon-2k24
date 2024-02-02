@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 class CONST {
   static String appName = "Hackathon";
+  static String baseURL = "http://localhost:3000";
+  static String recentFraudReport = "$baseURL/api/fraud/list/recent";
+  static String recentFraudReportCircle = "$baseURL/api/fraud/list/connection";
+  // addFraudReport
+  static String addFraudReport = "$baseURL/api/fraud/add";
 
   static List<Map<String, dynamic>> typesOfFraud = [
     {

@@ -16,6 +16,7 @@ Widget buildBottomSheet(
       child: ListView(
         controller: scrollController,
         children: [
+          const SizedBox(height: 50),
           const Heading(
               title: "Report new fraud", subtitle: "Report new fraud"),
           const SizedBox(height: 10),
@@ -33,11 +34,51 @@ Widget buildBottomSheet(
             onChanged: (r) =>
                 context.read<FraudViewModel>().onDescriptionChange(r),
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+
+          //* List of types
+          const SizedBox(height: 10),
+
+          Wrap(
+            children: [
+              for (var type in context.read<FraudViewModel>().typesOfFraud)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ChoiceChip(
+                    label: Text(
+                      type,
+                      style: TextStyle(
+                        color: context
+                                    .watch<FraudViewModel>()
+                                    .addFraudModel
+                                    .type ==
+                                type
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    ),
+                    selectedColor: Colors.blue,
+                    selected:
+                        context.watch<FraudViewModel>().addFraudModel.type ==
+                            type,
+                    onSelected: (r) {
+                      //* Add or remove the type
+                      if (r) {
+                        context.read<FraudViewModel>().selectTypeOfFraud(type);
+                      }
+                    },
+                  ),
+                )
+            ],
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Expanded(
               child: Button(
                 title: "Report Now",
+                onPressed: () {
+                  context.read<FraudViewModel>().addFraudReport();
+                },
               ),
             ),
           )

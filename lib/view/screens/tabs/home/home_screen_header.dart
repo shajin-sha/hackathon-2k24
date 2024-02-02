@@ -46,12 +46,16 @@ class HomeScreenHeader extends StatelessWidget {
                   onTap: () {
                     showFlexibleBottomSheet(
                       minHeight: 0,
-                      initHeight: 0.5,
+                      initHeight: 0.8,
                       maxHeight: 1,
                       context: context,
                       builder: buildBottomSheet,
-                      anchors: [0, 0.5, 1],
+                      anchors: [0, 0.8, 1],
                       isSafeArea: true,
+                      bottomSheetBorderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
                     );
                   },
                   child: CircleAvatar(

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:hackathon/theme/color.dart';
+import 'package:hackathon/view/common_viewmodel/ask_ai_view.dart';
 import 'package:hackathon/view/elements/heading.dart';
 import 'package:hackathon/view/elements/text_input_felid.dart';
+import 'package:provider/provider.dart';
 
 class AskAIScreen extends StatelessWidget {
   const AskAIScreen({super.key});
@@ -64,22 +67,53 @@ class AskAIScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 10, right: 10, bottom: 40, top: 10),
-              child: TextInput(
-                contentPadding:
-                    EdgeInsets.only(left: 20, right: 20, bottom: 17, top: 17),
-                hintText: "Ask AI about the fraud",
-                suffixIcon: FeatherIcons.mic,
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 10, right: 10, bottom: 40, top: 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextInput(
+                      controller:
+                          context.read<AskAIViewModel>().promptController,
+                      contentPadding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 17, top: 17),
+                      hintText: "Ask AI about the fraud",
+                      suffixIcon: FeatherIcons.mic,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: UiColor.primaryColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: IconButton(
+                      onPressed: () {
+                        context.read<AskAIViewModel>().sendPrompt(context
+                            .read<AskAIViewModel>()
+                            .promptController
+                            .text);
+                      },
+                      icon: const Icon(FeatherIcons.send, color: Colors.white),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: Column(
-          children: [],
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 500,
+              child: Markdown(
+                data: context.watch<AskAIViewModel>().result ?? "",
+              ),
+            )
+          ],
         ),
       ),
     );
