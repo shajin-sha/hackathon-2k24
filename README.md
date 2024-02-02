@@ -1,16 +1,18 @@
-# hackathon
+# Hackathon | Project name : ScanX
 
-A new Flutter project.
+## Opted domain : Privacy and Security
 
-## Getting Started
+## Problem Statement :
 
-This project is a starting point for a Flutter application.
+- Growing online fraud and cyber attacks.
 
-A few resources to get you started if this is your first Flutter project:
+## Solution (Brief description) :
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- With ScanX (Project name) you can `predict` and find out `new` and `existing` cyber frauds and attacks.
+  By giving us your friends contact numbers (list of contacts) we can check if they reported any attacks or frauds (which they experienced) and it will help an small circle of his friends to be aware of the same (We all that fraudsters always follow an chain of contacts to reach out to the victim).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  - We are using also giving an AI chatBOT option where you can ask any queries related to cyber security and frauds. (Or even specific to an reported attack or fraud)
+
+  - Users can report their own attacks (one they faced) or even do upvote and fraud report.
+
+  - We are taking friends circle number list ( From device's contact list) ( We are asking for permission to access the contacts)

@@ -1,5 +1,7 @@
 // FraudModel
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/contact.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:hackathon/const/const.dart';
 import 'package:hackathon/helpers/api_helper.dart';
 import 'package:hackathon/helpers/status_code.dart';
@@ -18,15 +20,15 @@ class FraudViewModel extends ChangeNotifier {
   }
 
   void addFraudReport() {
+    addFraudModel = addFraudModel.copyWith(
+      firstReported: DateTime.now(),
+      lastUpdated: DateTime.now(),
+      userMobile: "9995339813",
+    );
     API
         .post(
       CONST.addFraudReport,
-      body: addFraudModel
-          .copyWith(
-            firstReported: DateTime.now(),
-            lastUpdated: DateTime.now(),
-          )
-          .toJson(),
+      body: addFraudModel.toJson(),
     )
         .then((response) {
       if (response is Success) {
@@ -103,9 +105,17 @@ class FraudViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void loadRecentlyReportedFrauds() {
+  void loadRecentlyReportedFrauds() async {
+    List<Contact> contacts = await FlutterContacts.getContacts();
+    List<String> phoneNumber = [];
+
+    for (var element in contacts) {
+      phoneNumber.add(element.phones.first.number);
+    }
+
     //* Get the recently reported frauds
-    API.get(CONST.recentFraudReport).then((response) {
+    API.get(CONST.recentFraudReport, {"mobileList": phoneNumber.toList()}).then(
+        (response) {
       print(response);
       if (response is Success) {
         print(response.data);

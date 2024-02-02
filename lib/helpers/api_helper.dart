@@ -31,8 +31,9 @@ class API {
     }
   }
 
-  static Future<dynamic> get(String url) async {
-    final response = await http.get(Uri.parse(url));
+  static Future<dynamic> get(String url, Map<String, dynamic> query) async {
+    final response =
+        await http.get(Uri.parse(url).replace(queryParameters: query));
 
     if (response.statusCode == 200) {
       return Success(data: jsonDecode(response.body));
