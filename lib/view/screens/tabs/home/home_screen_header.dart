@@ -1,7 +1,9 @@
+import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:hackathon/theme/color.dart';
+import 'package:hackathon/view/elements/add_fraud_report_new_bottom_sheet.dart';
 import 'package:hackathon/view/elements/text_input_felid.dart';
 
 class HomeScreenHeader extends StatelessWidget {
@@ -40,12 +42,23 @@ class HomeScreenHeader extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                CircleAvatar(
-                  radius: 25,
-                  backgroundColor: UiColor.greyColor,
-                  child: Icon(
-                    CupertinoIcons.person,
-                    color: UiColor.primaryColor,
+                InkWell(
+                  onTap: () {
+                    showFlexibleBottomSheet(
+                      minHeight: 0,
+                      initHeight: 0.5,
+                      maxHeight: 1,
+                      context: context,
+                      builder: buildBottomSheet,
+                      anchors: [0, 0.5, 1],
+                      isSafeArea: true,
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: UiColor.greyColor,
+                    child:
+                        Icon(CupertinoIcons.add, color: UiColor.primaryColor),
                   ),
                 )
               ],

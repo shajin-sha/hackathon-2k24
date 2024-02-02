@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon/view/screens/home/home_screen.dart';
+import 'package:hackathon/view/screens/placeholder/placeholder_screen.dart';
+import 'package:hackathon/view/screens/report/report_screen.dart';
 
 class NavigationHelper {
   static Map<String, WidgetBuilder> roots = {
     //* List of routes used in the app, this is using inbuilt flutter navigation.
     //* No need to use any third party navigation library.
 
-    '/': (context) => const HomeScreen()
+    '/': (context) => const PlaceholderScreen(),
+    '/report': (context) => const ReportScreen(),
   };
 
   //* STATIC Path names for routes, used for passing in navigator methods.
   static const String homeScreen = '/';
+  static const String reportScreen = '/report';
   //* STATIC Path names for routes, used for passing in navigator methods.
 
   //* Use this function to navigate around the app, use routeName from above
